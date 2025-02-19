@@ -1,6 +1,7 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
-
+import { getTasks, saveTasks, createNewTask, patchTask, putTask, deleteTask } from "./utils/taskFunctions";
+import { initialData } from "./initialData";
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -15,6 +16,40 @@ function initializeData() {
     console.log('Data already exists in localStorage');
   }
 }
+initializeData();
+
+function renderTasks() {
+  const tasks = getTasks();
+  const todoContainer = document.querySelector('[data-status="todo"] .tasks-container');
+  const doingContainer = document.querySelector('data-status="doing" .tasks-container');
+  const doneContainer = document.querySelector('[data-status="done"] .tasks-container');
+  todoContainer.innerHTML = '';
+  doingContainer.innerHTML = '';
+  doneContainer.innerHTML = '';
+  tasks.forEach(task => {
+    const taskDiv = document.createElement('div')
+    taskDiv.innerHTML = `
+      <h5>${task.title}</h5>
+      <p>${task.description}</p>
+    `;
+  taskDiv.setAttribute('data-task-id', task.id);
+  // Handle click to open modal
+  task.Div.addEventlistener('click', () => openEditTaskModal(task));
+  switch (task.status) {
+    case 'done':
+        doneContainer.appendChild(taskDiv);
+        break;
+    case 'doing':
+        doingContainer.appendChild(taskDiv);
+        break;
+    case 'todo':
+    default:
+        todoContainer.appendChild(taskDiv);
+        break;
+    }
+  });
+};
+renderTasks();
 
 // TASK: Get elements from the DOM
 const elements = {
