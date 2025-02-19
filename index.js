@@ -20,9 +20,9 @@ initializeData();
 
 function renderTasks() {
   const tasks = getTasks();
-  //const todoContainer = document.querySelector('[data-status="todo"] .tasks-container');
-  //const doingContainer = document.querySelector('data-status="doing" .tasks-container');
-  //const doneContainer = document.querySelector('[data-status="done"] .tasks-container');
+  const todoContainer = document.querySelector('[data-status="todo"] .tasks-container');
+  const doingContainer = document.querySelector('data-status="doing" .tasks-container');
+  const doneContainer = document.querySelector('[data-status="done"] .tasks-container');
   todoContainer.innerHTML = '';
   doingContainer.innerHTML = '';
   doneContainer.innerHTML = '';
@@ -106,6 +106,7 @@ function displayBoards(boards) {
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
     boardElement.click()  { 
+      boardElement.addEventListener('click', () => {
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
