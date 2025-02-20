@@ -243,18 +243,20 @@ function toggleModal(show, modal = elements.modalWindow) {
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
 
-function addTask(event) {
+async function addTask(event) {
   event.preventDefault(); 
 
   //Assign user input to the task object
     const task = {
-     title: document.getElementById("task-title").value,
-      description: document.getElementById("task-desc").value,
-      status: document.getElementById("task-status").value,
-      board: activeBoard,
-      id: Date.now()  
-    };
-    const newTask = createNewTask(task);
+    title: document.getElementById("task-title").value,
+    description: document.getElementById("task-desc").value,
+    status: document.getElementById("task-status").value,
+    board: activeBoard,
+    id: Date.now()
+  };
+
+  try {
+    const newTask = await createNewTask(task); // Await the promise
     if (newTask) {
       addTaskToUI(newTask);
       toggleModal(false);
@@ -263,7 +265,10 @@ function addTask(event) {
       refreshTasksUI();
     }
 }
-
+ catch (error) {
+    console.error("Failed to add task:", error);
+  }
+}
 
 function toggleSidebar(show) {
  
