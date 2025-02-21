@@ -269,13 +269,29 @@ async function addTask(event) {
     console.error("Failed to add task:", error);
   }
 }
-
+//Toggle sidebar visibility
 function toggleSidebar(show) {
- 
-}
+  if (show) {
+    elements.sidebarDiv.style.display = 'block'; // Show the sidebar
+    elements.showSidebarDiv.style.display = 'none'; // Hide the show sidebar button
+    elements.hideSideBarBtn.style.display = 'block'; // Show the hide sidebar button
+  } else {
+    elements.sidebarDiv.style.display = 'none'; // Hide the sidebar
+    elements.showSidebarDiv.style.display = 'block'; // Show the show sidebar button
+    elements.hideSideBarBtn.style.display = 'none'; // Hide the hide sidebar button
+  }
 
+}
+//Toggle between light and dark theme
 function toggleTheme() {
- 
+ const currentTheme = elements.body.classList.contains('dark-theme');
+  if (currentTheme) {
+    elements.body.classList.remove('dark-theme'); // Remove dark theme
+    elements.body.classList.add('light-theme'); // Add light theme
+  } else {
+    elements.body.classList.remove('light-theme'); // Remove light theme
+    elements.body.classList.add('dark-theme'); // Add dark theme
+  }
 }
 
 
