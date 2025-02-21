@@ -1347,12 +1347,15 @@ input:checked + #label-checkbox-theme:after {
 @media screen and (min-width: 1025px) {
   body {
     font-size: 16px;
+    overflow: hidden; /* Prevent scroll when sidebar is active */
   }
 
   .container {
     max-width: 100%;
     padding-left: 35px;
     padding-right: 35px;
+    display: flex; /* Use flexbox for layout */
+    height: 100vh; /* Full height */
   }
 
   #header {
@@ -1367,6 +1370,7 @@ input:checked + #label-checkbox-theme:after {
 
   .column-div {
     padding: 60px;
+    flex-grow: 1; /* Allow columns to take available space */
   }
 
   .task-div {
@@ -1378,6 +1382,7 @@ input:checked + #label-checkbox-theme:after {
   }
   .side-bar {
     width: 300px;
+     height: auto; /* Ensure sidebar takes full height */
   }
   h2 {
     font-size: 1em;
@@ -1387,6 +1392,7 @@ input:checked + #label-checkbox-theme:after {
 @media screen and (min-width: 2560px) {
   body {
     font-size: 16px;
+     overflow: hidden; /* Prevent scroll when sidebar is active */
   }
 
   .side-bar {
